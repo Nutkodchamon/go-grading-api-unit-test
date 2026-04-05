@@ -34,15 +34,15 @@ func main() {
 		protected.Use(middleware.AuthMiddleware())
 		{
 			// TODO: uncomment this when we want to see user profile
-			//protected.GET("/profile", func(c *gin.Context) {
-			//	username, _ := c.Get("username")
-			//	role, _ := c.Get("role")
-			//
-			//	c.JSON(200, gin.H{
-			//		"username": username,
-			//		"role":     role,
-			//	})
-			//})
+			protected.GET("/profile", func(c *gin.Context) {
+				username, _ := c.Get("username")
+				role, _ := c.Get("role")
+
+				c.JSON(200, gin.H{
+					"username": username,
+					"role":     role,
+				})
+			})
 
 			protected.POST("/grade/submit",
 				middleware.RequireRole("instructor"),
